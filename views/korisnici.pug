@@ -1,0 +1,128 @@
+extends layout
+include mixins/_home-button
+
+include mixins/_spinner
+
+block content
+
+    if(!vina)
+        +spinner
+
+
+
+    .container 
+        .row
+            h2= title
+            hr
+
+                     
+            each korisnik in korisnici
+                a(href=`/korisnici/${korisnik._id}`) 
+                    Button.btn.waves-effect.waves-light.btn-zemlja.brown #{korisnik._id} - (#{korisnik.count}) 
+                     
+           
+            br
+            br
+            hr
+        .row#sliphover
+            br
+            each vino in vina
+
+
+                .col.s12.m6.l3
+                    .card.z-depth-2
+                        .card-image.sliphover-target(data-caption=`<a class="modal-trigger sliphover-options" href='#${vino.slug}'><div class="sliphover-wrapper"><p>${vino.naziv}</p></div></a>`)
+                            a.modal-trigger(href=`#${vino.slug}`)
+                                img(src=`/images/${vino.slika || 'slika.jpg'}` )
+                            .korisnik
+                                a(href=`/korisnici/${vino.ime}`)
+                                    p.card-ime= vino.ime
+                            .card-title.card-style
+                                p= vino.naziv
+                        .card-action.brown.lighten-4.action-style
+                            a.modal-trigger.card-zemlje(href=`/zemlje/${vino.zemlja}`)
+                                p= vino.zemlja.toUpperCase()     
+                
+                           
+
+                div(id= vino.slug data-keyboard="false").modal.modal-fixed-footer.vino-modal    
+                    .slika-fullscreen
+                        img(src=`/images/${vino.slika || 'slika.jpg'}`)      
+                        .btn-floating.red.modal-close.btn-large.waves-effect.waves-light#slika-close
+                            i.material-icons clear                        
+
+                    .modal-content
+                        
+                        .grid-container
+                            .slika.slika-trigger 
+                                img.modal-slika(src=`/images/${vino.slika || 'slika.jpg'}`)
+                            .tekst1
+                                .row
+                                    
+                                       
+                                    .col.l6.offset-l4
+                                        h5.brown-text.left-align Naziv Vina: #{vino.naziv}
+                                        h5.brown-text.left-align Zemlja Porijekla: #{vino.zemlja}
+                            .tekst2 
+                                                                          
+                                        
+                                    .col.l6.offset-l4
+                                       
+                                        h5.brown-text.left-align Proizvođač: #{vino.proizvodjac}
+                                        h5.brown-text.left-align Vrsta: #{vino.vrsta}
+                                                                                
+                            
+                            .tekst3 
+                                                                           
+                                    .col.l6.offset-l4
+                                        
+                                        h5.brown-text.left-align Godina berbe: #{vino.godina}
+                                        
+                            .tekst4
+                                
+                                    .col.l6.offset-l4
+                                                                                
+
+                                        h5.brown-text.left-align Procenat Alkohola: #{vino.alkohol}%
+                                        h5.brown-text.left-align Veličina Boce: #{vino.velicina} litara
+
+                                
+                    .modal-footer
+                        - h.moment.locale('bs')
+                            p.modal-datum #{ime} Dodao #{vino.ime}, #{h.moment(vino.datum).fromNow()}
+
+                           
+                        if user && vino.korisnik.equals(user._id)
+                            .fixed-action-btn.button-fab
+                                a.btn-floating.btn-large.brown
+                                    i.large.material-icons chevron_left
+                                ul
+                                    li
+                                        a.btn-floating.red.modal-trigger.modal-close(href=`#ukloni_${vino._id}`)
+                                            i.material-icons clear
+                                    li
+                                        a.btn-floating.green(href=`/vino/${vino._id}/uredi`)
+                                            i.material-icons mode_edit
+                        
+                        else if user && user.level === 1
+                            .fixed-action-btn.button-fab
+                                a.btn-floating.btn-large.brown
+                                    i.large.material-icons chevron_left
+                                ul
+                                    li
+                                        a.btn-floating.red.modal-trigger(href=`#ukloni_${vino._id}`)
+                                            i.material-icons clear
+                                    li
+                                        a.btn-floating.green(href=`/vino/${vino._id}/uredi`)
+                                            i.material-icons mode_edit
+
+
+
+                .div(id=`ukloni_${vino._id}`).modal.izbrisi-vino-modal
+                    .modal-content
+                        h5 Da li zaista želite da uklonite #{vino.naziv} vino?
+                    .modal-footer
+                        a.modal-action.modal-close.btn.red.modal-btn(href=`/vino/${vino._id}/ukloni`) Ukloni
+                        a.modal-action.modal-close.btn.green.modal-btn(href='#!') Zatvori
+
+        +home-button

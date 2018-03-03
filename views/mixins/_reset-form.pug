@@ -1,0 +1,24 @@
+mixin reset-form
+
+    .container
+        .row
+            br
+            br
+            .z-depth-3.brown.lighten-5.col.s12.login-forma
+                form(action='/reset-email-form' method="POST")
+                    h4.login-h4.brown-text.center-align.col.s10.offset-s1 Zahtjev za reset korisničke šifre
+                        hr
+                        br    
+                        .input-field.col.s10.offset-s1
+                            input#reset.validate(type='email' name="reset")
+                            label(for='reset') Molimo unesite validan email
+                        
+                        .col.s10.offset-s1
+                            br
+                            .row
+                            
+                                button#btn-reg.btn.btn-large.waves-effect.waves-light.col.m5.s12.l4.brown.right(type='submit' name='login') Pošalji
+
+
+                              
+                        

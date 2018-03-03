@@ -1,0 +1,15 @@
+extends layout
+include mixins/_userTabela
+include mixins/_home-button
+
+block content
+
+    .container
+        .row
+            h2= title
+
+        .row.col.l12
+            +userTabela
+            +home-button
+
+            

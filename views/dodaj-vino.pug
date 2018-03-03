@@ -1,0 +1,10 @@
+extends layout
+include mixins/_dodaj-vino-form
+include mixins/_home-button
+
+block content
+    .container
+        .row
+            h2= title
+            +dodaj-vino(vino)
+            +home-button

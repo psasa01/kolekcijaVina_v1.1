@@ -1,0 +1,39 @@
+extends layout
+
+block content
+
+    .container  
+
+        .row
+
+            h2= title
+                
+
+            .grid#sliphover
+                .grid-sizer
+                    each slika in slike
+                       
+                        .grid-item.sliphover-target( data-caption=`<a href="#${slika._id}" class="modal-trigger sliphover-izbrisi"><i class="material-icons medium">cancel</i></a>`)
+                            a.icon-izbrisi-hide.modal-trigger(href=`#${slika._id}`)
+                                i.material-icons.medium cancel
+                            
+                            img(src=`./images/thumbs/thumb_${slika.thumb}`)  
+                            
+                        div(id= slika._id).modal.izbrisi-sliku-modal
+                            .modal-content
+                                h5 Da li zaista želite da uklonite fotografiju?
+                            .modal-footer
+                                a.modal-action.modal-close.btn.red.modal-btn(href=`/slika/${slika._id}/ukloni`) Ukloni fotografiju
+                                a.modal-action.modal-close.btn.green.modal-btn(href='#!') Zatvori
+
+    .fixed-action-btn.button-fab#home-button
+        a.btn-floating.btn-large.brown
+            i.large.material-icons fast_rewind
+        ul
+            li
+                a.tooltipped.btn-floating.red(href=`/` data-position="top" data-delay="10" data-tooltip="Početna")
+                    i.material-icons home
+            li
+                a(href=`/galerija` )
+                    button.tooltipped.btn-floating.green(data-position="top" data-delay="10" data-tooltip="Galerija")
+                        i.material-icons photo_size_select_actual

@@ -1,0 +1,14 @@
+mixin vino-card(vino = {})
+
+        a.modal-trigger(href=`#${vino.slug}`)
+            .col.s12.m6.l3
+                .card.z-depth-2
+                    .card-image
+                        img(src=`/images/${vino.slika || 'slika.jpg'}` data-caption=`<a color='#ddd' href='#${vino.slug}'>..${vino.naziv}</a>`)
+                        .korisnik
+                            a(href=`/korisnici/${vino.ime}`)    
+                                p.card-ime= vino.ime
+                        .card-title.card-style
+                            p= vino.naziv
+                    .card-action.brown.lighten-4.action-style
+                        a(href=`/zemlje/${vino.zemlja}`)= vino.zemlja.toUpperCase() aaa

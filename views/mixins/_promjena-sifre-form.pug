@@ -1,0 +1,27 @@
+mixin promjena-sifre-form
+
+    .container
+        .row
+            br
+            br
+            .z-depth-3.brown.lighten-5.col.s12.login-forma
+                form(method="POST")
+                    h4.login-h4.brown-text.center-align.col.s10.offset-s1 Molimo unesite podatke za promjenu šifre
+                        hr
+                        
+                        .input-field.col.s10.offset-s1
+                            input#password.validate(type='password' name="password")
+                            label(for='password') Šifra
+                        .input-field.col.s10.offset-s1
+                            input#password-potvrda.validate(type='password' name="password-potvrda")
+                            label(for='password-potvrda') Potvrdi šifru  
+                        .col.s10.offset-s1
+                            br
+                            .row
+                                
+                                button#btn-reg.btn.btn-large.waves-effect.waves-light.col.m5.s12.l4.brown.right(type='submit' name='login') Potvrdi
+
+
+
+                                
+                      

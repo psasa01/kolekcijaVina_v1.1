@@ -1,0 +1,35 @@
+mixin login-form
+
+    .container
+        .row
+            br
+            br
+            .z-depth-3.brown.lighten-5.col.s12.login-forma
+                form(action='/login' method="POST")
+                    h4.login-h4.brown-text.center-align.col.s10.offset-s1 Molimo unesite podatke za prijavu
+                        hr
+                        
+                        .input-field.col.s10.offset-s1
+                            input#email.validate(type='email' name="email")
+                            label(for='email') Email
+                        .input-field.col.s10.offset-s1
+                            input#password.validate(type='password' name="password")
+                            label(for='password') Šifra
+                        .col.s10.offset-s1
+                            br
+                            .row
+                                a#btn-reg.btn.btn-large.waves-effect.waves-light.col.s12.m5.l4.blue.darken-4.right(href='/auth/facebook') 
+                                    | Facebook prijava
+                                button#btn-reg.btn.btn-large.waves-effect.waves-light.col.m5.s12.l4.brown.right(type='submit' name='login') Prijava
+
+                                
+                                    
+                        .col.s10.offset-s1
+                            label(style='float: right;')
+                                br
+                                a.pink-text(href='/reset')
+                                    b Zaboravili ste šifru?
+                                  
+
+
+            

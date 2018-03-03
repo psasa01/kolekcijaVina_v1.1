@@ -1,0 +1,27 @@
+mixin racun-form
+
+    .container
+        .row
+            br
+            br
+            .z-depth-3.brown.lighten-5.col.s12.login-forma
+                form(action="/racun" method="POST" )
+                    .col.s10.offset-s1
+                        h4.login-h4.brown-text.center-align.col.s10.offset-s1 Molimo unesite podatke za promjenu
+                    .col.s12
+                        
+                        .input-field.col.s10.offset-s1
+                            input#ime(type='text' name="name" value=user.ime)
+                            label(for='name') Korisničko ime                          
+                        .input-field.col.s10.offset-s1
+                            input#email(type='email' name="email" value=user.email)
+                            label(for='email') Email
+                        .col.s10.offset-s1
+                            br
+                            button.btn.btn-large.waves-effect.waves-light.col.s12.brown(type='submit') Spasi promjene
+                        
+                                  
+                        br
+                        br                
+
+ 

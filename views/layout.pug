@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        title= `${title} | ${h.siteName}`
+        link(rel='icon' type='image/png' href='./images/favicon-32.png' sizes='32x32')
+        
+        link(rel='stylesheet' href='/unitegallery/css/unite-gallery.css' type='text/css') 
+        link(rel='stylesheet' href='/unitegallery/skins/alexis/alexis.css' type='text/css')
+        
+        link(rel='stylesheet', href='/dist/style.css')
+        link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.3/css/materialize.min.css')
+        
+        link(href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet')
+        link(rel='icon' type='image/png' href='./public/images/favicon-32.png' sizes='32x32')
+
+        
+        
+        
+        
+        
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        
+        
+
+    body.brown.lighten-4
+        block header
+            
+
+            .navbar-fixed  
+                
+                nav
+                    .nav-wrapper.brown
+                        a(href='/mojaKolekcijaVina') 
+                            img.moja-kolekcija-vina(src="/images/logo.svg", alt="")
+                            
+                        a.sidenav-trigger(href='#' data-target='mobile-demo')
+                            i.material-icons menu
+                        ul.right.hide-on-med-and-down.right-margin
+                            li
+                                a(href='/dodaj-vino') Novo Vino
+                            li
+                                a(href='/galerija') Galerija
+                            
+                           
+                            // Dropdown Trigger
+                            li
+                                a.dropdown-trigger(href='#!' data-target='dropdown1')
+                                    | Pretraga po
+                                    i.material-icons.right arrow_drop_down
+                            
+                            if !user
+
+                                li
+                                    a(href='/login') Prijava
+                                li
+                                    a(href='/register') Registracija
+                            else if user.level > 10
+                                li
+                                    a(href='/logout') Odjava
+                                li
+                                    a.nav-slika(href=('/racun'))
+                                        img.circle.responsive-img.user-image(src=user.slika || user.gravatar)
+                                li= user.ime 
+                                    | &nbsp;&nbsp;
+                            else if user.level < 11
+                                li  
+                                    a(href='/admin') Admin
+                                li
+                                    a(href='/logout') Odjava
+                                li
+                                    a.nav-slika(href=('/racun'))
+                                        img.circle.responsive-img.user-image(src=user.slika || user.gravatar)
+                                li= user.ime 
+                                    | &nbsp;&nbsp;
+
+                            
+        ul#mobile-demo.sidenav
+            if user 
+                li
+                    img.circle.responsive-img.user-image-mobile(src=user.slika || user.gravatar)
+                li
+                    a(href='/dodaj-vino') #{user.ime}       
+                li.divider
+                li
+                    a(href='/dodaj-vino') Novo Vino
+                li
+                    a(href='/galerija') Galerija
+                li
+                    a(href='/zemlje') Pretraga po Zemljama
+                li
+                    a(href='/vrste') Pretraga po Vrstama
+                li
+                    a(href='/korisnici') Pretraga po Korisnicima
+                li
+                    a(href='/godine') Pretraga po Godinama
+                li
+                    a(href='/logout') Odjava
+                
+            else
+                li
+                    a(href='/dodaj-vino') Novo Vino
+                li
+                    a(href='/galerija') Galerija
+                li
+                    a(href='/zemlje') Pretraga po Zemljama
+                li
+                    a(href='/vrste') Pretraga po Vrstama
+                li
+                    a(href='/korisnici') Pretraga po Korisnicima
+                li
+                    a(href='/godine') Pretraga po Godinama
+                li
+                    a(href='/login') Prijava
+                li
+                    a(href='/register') Registracija
+                
+            
+            ul#dropdown1.dropdown-content
+                li
+                    a(href='/zemlje') Zemljama
+                li.divider
+                li
+                    a(href='/vrste') Vrstama
+                li.divider
+                li
+                    a(href='/korisnici') Korisnicima
+                li.divider
+                li
+                    a(href='/godine') Godinama
+                li.divider
+
+
+
+        block messages
+            if locals.flashes
+                .container
+                    .flash-messages
+                        - const categories = Object.keys(locals.flashes)
+                        each category in categories
+                            each message in flashes[category]
+                                .flash(class=`flash--${category}`)
+                                    p.flash__text!= message
+                                    button.flash__remove(onClick="this.parentElement.remove()") &times;
+          
+        block content
+
+        block footer
+            .row
+                .footer
+                    .p Saša Petrović - 2018
+
+        block scripts
+            script(src="https://use.fontawesome.com/46a5f844ac.js")
+            script(src='https://code.jquery.com/jquery-3.2.1.min.js', integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=', crossorigin='anonymous')
+            //- script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js", integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=",  crossorigin="anonymous")
+            script(src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.3/js/materialize.min.js')
+            //- script(src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.min.js")
+            script(src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js")
+            script(src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js")
+            
+            script(type='text/javascript' src='/unitegallery/js/unitegallery.min.js')
+            script(type='text/javascript' src='/unitegallery/themes/tiles/ug-theme-tiles.js')
+            
+            script(type='text/javascript' src='/sliphover/jquery.sliphover.js')
+
+
+            script(src="/dist/App.bundle.js")      

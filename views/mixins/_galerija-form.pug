@@ -1,0 +1,45 @@
+mixin galerija-form
+
+    
+        //- #spinner.preloader-wrapper.big.active
+        //-     .spinner-layer.spinner-blue-only
+        //-         .circle-clipper.left
+        //-             .circle
+        //-         .gap-patch
+        //-             .circle
+        //-         .circle-clipper.right
+        //-             .circle
+
+        
+        if user && user.level == 1
+            .button-div.col.s12.m6
+                button#prikaz-forme.btn-floating.btn-large.waves-effect.waves-light.blue.darken-2
+                    i.large.material-icons add
+            a.button-div-2.col.s12.m6(href="/izbrisi-sliku")
+                button#izbrisi-sliku.btn-floating.btn-large.waves-effect.waves-light.red.darken-2
+                    i.large.material-icons clear
+                    
+        .row
+            .title-div
+                h2= title
+            
+      
+
+        .row#dodaj-sliku-forma
+
+            
+
+            form.col.s12(action=`/dodajSliku` method="POST" enctype="multipart/form-data" )
+                .input-field.col.s12
+                    input#opis(type="text" name="opis")
+                    label(for="opis") Dodajte opis fotografije
+
+                .file-field.input-field.col.s12
+                    button.btn.brown.col.s12.m3 Izaberite sliku
+                        input(type="file" name="slika" id="slika" accept="image/gif, image/png, image/jpeg, image/jpg")
+                    .file-path-wrapper.col.s12.m7
+                        input.file-path.validate(type="text")
+
+                    button.btn.waves-effect.waves-light.col.s12.m2.blue(type="submit") Potvrdite
+
+

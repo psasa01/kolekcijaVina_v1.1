@@ -1,0 +1,50 @@
+mixin dodaj-vino(vino = {})
+
+    form.col.s12(action=`/dodaj-vino/${vino._id || ''}` method="POST" enctype="multipart/form-data")
+        .input-field.col.s12
+            input#naziv.validate(type="text" name="naziv" value=vino.naziv)
+            label(for="naziv") Naziv vina
+        .input-field.col.s12.l6
+            input#proizvodjac.validate(type="text" name="proizvodjac" value=vino.proizvodjac)
+            label(for="proizvodjac") Naziv proizvođača
+        .input-field.col.s12.l6
+            input#zemlja.validate(type="text" name="zemlja" value=vino.zemlja)
+            label(for="zemlja") Zemlja porijekla
+        .input-field.col.s12.l6
+            input#vrsta.validate(type="text" name="vrsta" value=vino.vrsta)
+            label(for="vrsta") Vrsta vina
+        .input-field.col.s12.l6
+            input#godina(type="text" name="godina" value=vino.godina)
+            label(for="godina") Godina berbe
+        .input-field.col.s12.l6
+            input#alkohol(type="text" name="alkohol" value=vino.alkohol)
+            label(for="alkohol") Procenat alkohola
+        .input-field.col.s12.l6
+            input#velicina(type="text" name="velicina" value=vino.velicina)
+            label(for="velicina") Veličina boce
+        .file-field.input-field.col.l6.s12
+            .btn.brown
+                if !vino.slika
+                    span Dodaj Sliku
+                else
+                    span Promjeni Sliku
+                input(type="file" name="slika" id="slika" accept="image/gif, image/png, image/jpeg, image/jpg")
+            .file-path-wrapper
+                input.file-path.validate(type="text")
+                
+        if !vino.naziv
+            button.btn.waves-effect.waves-light.btn-large.spremi-button.col.s12.l6.brown(type="submit") Spremi vino
+        else
+            button.btn.waves-effect.waves-light.btn-large.spremi-button.col.s12.l6.brown(type="submit") Uredi vino
+        br
+        br
+
+    .row
+        if vino.slika
+            .col.l3.m6
+                br
+                img(src=`/images/${vino.slika}`, alt=vino.naziv width="100%")
+
+
+        
+    

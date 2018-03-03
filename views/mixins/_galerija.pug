@@ -1,0 +1,5 @@
+mixin galerija(slika = {})
+
+    	a(href='#')
+            img(alt=`${slika.opis}` src=`./images/thumbs/thumb_${slika.thumb}` data-button=`<button>x</button>` data-image=`./images/big/big_${slika.big}` style='display:none')
+        
