@@ -31,85 +31,85 @@ block content
                 
                            
 
-                            div(id= vino.slug data-keyboard="false").modal.modal-fixed-footer.vino-modal    
-                                .slika-fullscreen
-                                    img(src=`/images/${vino.slika || 'slika.jpg'}`)      
-                                    .btn-floating.red.modal-close.btn-large.waves-effect.waves-light#slika-close
-                                        i.material-icons clear                        
+                div(id= vino.slug data-keyboard="false").modal.modal-fixed-footer.vino-modal    
+                    .slika-fullscreen
+                        img(src=`/images/${vino.slika || 'slika.jpg'}`)      
+                        .btn-floating.red.modal-close.btn-large.waves-effect.waves-light#slika-close
+                            i.material-icons clear                        
 
-                                .modal-content
+                    .modal-content
+                        
+                        .grid-container
+                            .slika.slika-trigger 
+                                img.modal-slika(src=`/images/${vino.slika || 'slika.jpg'}`)
+                            .tekst1
+                                .row
                                     
-                                    .grid-container
-                                        .slika.slika-trigger 
-                                            img.modal-slika(src=`/images/${vino.slika || 'slika.jpg'}`)
-                                        .tekst1
-                                            .row
-                                                
-                                                    
-                                                .col.l6.offset-l4
-                                                    h5.brown-text.left-align Naziv Vina: #{vino.naziv}
-                                                    h5.brown-text.left-align Zemlja Porijekla: #{vino.zemlja}
-                                        .tekst2 
-                                                                                        
-                                                    
-                                                .col.l6.offset-l4
-                                                    
-                                                    h5.brown-text.left-align Proizvođač: #{vino.proizvodjac}
-                                                    h5.brown-text.left-align Vrsta: #{vino.vrsta}
-                                                                                            
                                         
-                                        .tekst3 
-                                                                                        
-                                                .col.l6.offset-l4
-                                                    
-                                                    h5.brown-text.left-align Godina berbe: #{vino.godina}
-                                                    
-                                        .tekst4
-                                            
-                                                .col.l6.offset-l4
-                                                                                            
-
-                                                    h5.brown-text.left-align Procenat Alkohola: #{vino.alkohol}%
-                                                    h5.brown-text.left-align Veličina Boce: #{vino.velicina} litara
-
-                                            
-                                .modal-footer
-                                    - h.moment.locale('bs')
-                                        p.modal-datum #{ime} Dodao #{vino.ime}, #{h.moment(vino.datum).fromNow()}
-
+                                    .col.l6.offset-l4
+                                        h5.brown-text.left-align Naziv Vina: #{vino.naziv}
+                                        h5.brown-text.left-align Zemlja Porijekla: #{vino.zemlja}
+                            .tekst2 
+                                                                            
                                         
-                                    if user && vino.korisnik.equals(user._id)
-                                        .fixed-action-btn.button-fab
-                                            a.btn-floating.btn-large.brown
-                                                i.large.material-icons chevron_left
-                                            ul
-                                                li
-                                                    a.btn-floating.red.modal-trigger.modal-close(href=`#ukloni_${vino._id}`)
-                                                        i.material-icons clear
-                                                li
-                                                    a.btn-floating.green(href=`/vino/${vino._id}/uredi`)
-                                                        i.material-icons mode_edit
-                                    
-                                    else if user && user.level === 1
-                                        .fixed-action-btn.button-fab
-                                            a.btn-floating.btn-large.brown
-                                                i.large.material-icons chevron_left
-                                            ul
-                                                li
-                                                    a.btn-floating.red.modal-trigger(href=`#ukloni_${vino._id}`)
-                                                        i.material-icons clear
-                                                li
-                                                    a.btn-floating.green(href=`/vino/${vino._id}/uredi`)
-                                                        i.material-icons mode_edit
+                                    .col.l6.offset-l4
+                                        
+                                        h5.brown-text.left-align Proizvođač: #{vino.proizvodjac}
+                                        h5.brown-text.left-align Vrsta: #{vino.vrsta}
+                                                                                
+                            
+                            .tekst3 
+                                                                            
+                                    .col.l6.offset-l4
+                                        
+                                        h5.brown-text.left-align Godina berbe: #{vino.godina}
+                                        
+                            .tekst4
+                                
+                                    .col.l6.offset-l4
+                                                                                
+
+                                        h5.brown-text.left-align Procenat Alkohola: #{vino.alkohol}%
+                                        h5.brown-text.left-align Veličina Boce: #{vino.velicina} litara
+
+                                
+                    .modal-footer
+                        - h.moment.locale('bs')
+                            p.modal-datum #{ime} Dodao #{vino.ime}, #{h.moment(vino.datum).fromNow()}
+
+                            
+                        if user && vino.korisnik.equals(user._id)
+                            .fixed-action-btn.button-fab
+                                a.btn-floating.btn-large.brown
+                                    i.large.material-icons chevron_left
+                                ul
+                                    li
+                                        a.btn-floating.red.modal-trigger.modal-close(href=`#ukloni_${vino._id}`)
+                                            i.material-icons clear
+                                    li
+                                        a.btn-floating.green(href=`/vino/${vino._id}/uredi`)
+                                            i.material-icons mode_edit
+                        
+                        else if user && user.level === 1
+                            .fixed-action-btn.button-fab
+                                a.btn-floating.btn-large.brown
+                                    i.large.material-icons chevron_left
+                                ul
+                                    li
+                                        a.btn-floating.red.modal-trigger(href=`#ukloni_${vino._id}`)
+                                            i.material-icons clear
+                                    li
+                                        a.btn-floating.green(href=`/vino/${vino._id}/uredi`)
+                                            i.material-icons mode_edit
 
 
 
-                            .div(id=`ukloni_${vino._id}`).modal.izbrisi-vino-modal
-                                .modal-content
-                                    h5 Da li zaista želite da uklonite #{vino.naziv} vino?
-                                .modal-footer
-                                    a.modal-action.modal-close.btn.red.modal-btn(href=`/vino/${vino._id}/ukloni`) Ukloni
-                                    a.modal-action.modal-close.btn.green.modal-btn(href='#!') Zatvori
+                .div(id=`ukloni_${vino._id}`).modal.izbrisi-vino-modal
+                    .modal-content
+                        h5 Da li zaista želite da uklonite #{vino.naziv} vino?
+                    .modal-footer
+                        a.modal-action.modal-close.btn.red.modal-btn(href=`/vino/${vino._id}/ukloni`) Ukloni
+                        a.modal-action.modal-close.btn.green.modal-btn(href='#!') Zatvori
 
 
 
