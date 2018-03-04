@@ -1,3 +1,7 @@
 node_modules/
 variables.env
 *.log
+/public/images/vina-thumbs/
+/public/images/vina-big/
+/public/images/big/
+/public/images/thumbs/
