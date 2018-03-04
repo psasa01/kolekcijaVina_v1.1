@@ -19,7 +19,7 @@ block content
                     .card.z-depth-2
                         .card-image.sliphover-target(data-caption=`<a class="modal-trigger sliphover-options" href='#${vino.slug}'><div class="sliphover-wrapper"><p>${vino.naziv}</p></div></a>`)
                             a.modal-trigger(href=`#${vino.slug}`)
-                                img(src=`/images/${vino.slika || 'slika.jpg'}` )
+                                img(src=`/images/vina-thumb/${vino.slika || 'slika.jpg'}` )
                             .korisnik
                                 a(href=`/korisnici/${vino.ime}`)
                                     p.card-ime= vino.ime
