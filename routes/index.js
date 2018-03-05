@@ -13,11 +13,12 @@ const {
 } = require('../handlers/errorHandlers');
 
 router.get('/mojaKolekcijaVina', catchErrors(vinoController.mojaKolekcijaVina));
-router.get('/', catchErrors(vinoController.prikazi20ZadnjihVina));
+router.get('/', catchErrors(vinoController.getIndex));
 router.get('/vina', catchErrors(vinoController.prikaziVina));
 // router.get('/:page', catchErrors(vinoController.prikaziVina));
 router.get('/dodaj-vino',
   authController.isLoggedIn,
+  authController.isAdministrator,
   vinoController.dodajVino
 );
 

@@ -445,6 +445,21 @@ select:-webkit-autofill:focus {
   -o-transition: background-color 5000s ease-in-out 0s !important;
   transition: background-color 5000s ease-in-out 0s !important; }
 
+.background-img {
+  width: 100vw;
+  height: 86.7vh; }
+  .background-img img {
+    height: 80%;
+    position: fixed;
+    top: 5.5em;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
+    opacity: .9;
+    -webkit-box-shadow: 2px 2px 5px #888888;
+            box-shadow: 2px 2px 5px #888888; }
+
 .spremi-button {
   position: absolute;
   bottom: -.4em; }

@@ -22,9 +22,10 @@ const multerOptions = {
 
 
 
+
 exports.getIndex = async (req, res) => {
   await res.render('index', {
-    title: 'Ovo je Vinski Index'
+    title: 'Index'
   });
 };
 
@@ -119,6 +120,7 @@ exports.mojaKolekcijaVina = async (req, res) => {
 
   if (!req.user) {
     res.redirect('/');
+    return;
   }
 
   const loggedUser = req.user.ime

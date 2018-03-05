@@ -25,6 +25,16 @@ exports.isLoggedIn = (req, res, next) => {
     };
 };
 
+exports.isAdministrator = (req, res, next) => {
+    if(req.user && req.user.level < 11) {
+        next();
+        return;        
+    } else {
+        req.flash('error', 'Morate biti administrator da biste dodali novo vino!');
+        res.redirect('/');
+    }
+}
+
 exports.isActive = async(req, res, next) => {
     const user = await User.findOne({
         email: req.body.email
